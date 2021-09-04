@@ -1,0 +1,27 @@
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* MAIN */
+#playground{
+    width: 600px;
+    height: 600px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: cornsilk;
+    }
+      
+    #playground div{
+        height: 60px;
+        width: 60px;
+        background-color: green;
+        border: 1px solid black;
+    }
+    
+    #playground .click_bg_switch{
+        background-color: red;
+    }
