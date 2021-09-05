@@ -6,22 +6,36 @@
 }
 
 /* MAIN */
+.container{
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+
 #playground{
     width: 600px;
-    height: 600px;
-    margin: auto;
+    /* margin: auto; */
     display: flex;
     flex-wrap: wrap;
     background-color: cornsilk;
-    }
-      
-    #playground div{
-        height: 60px;
-        width: 60px;
-        background-color: green;
-        border: 1px solid black;
-    }
-    
-    #playground .click_bg_switch{
-        background-color: red;
-    }
+}
+
+
+#playground div{
+    width: 60px;
+    height: 60px;
+    border-radius: 20px;
+    text-align: center;
+    line-height: 60px;
+    background-color: green;
+    border: 1px solid black;
+
+}
+
+#playground .click_bg_switch{
+    background-color: red;
+}
+
+
+

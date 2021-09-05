@@ -10,47 +10,85 @@
 // con difficoltà 2 => tra 1 e 50
 
 // FUNZIONE GENERA CAMPO DA GIOCO
-function setGrid(num, field){
-    for(var i = 1; i <= num ; i++){
-        let tile = document.createElement('div');
-        field.appendChild(tile)
-        tile.innerHTML = [i]
+function setGrid(num){
+    let field = document.getElementById('playground');
+    let tile;
+    for(var i = 1; i <= num ; i++ ){
+        tile = document.createElement('div');
+        field.appendChild(tile);
+        tile.innerHTML = i;
+        validTilesArr.push(i);
     }
 }
 
 // FUNZIONE GENERA BOMBE
 function setBombs(min, max) {
-    let bomb = 0;
+    let bomb;
     for (var i = 0; i < numBombs;){
         bomb = Math.floor(Math.random() * (max - min + 1) ) + min;
-        if (!bombs.includes(bomb)){
-            bombs.push(bomb)
+        // vengono pushate solo le bombe valide ( numeri diversi)
+        if (!bombsArr.includes(bomb)){
+            bombsArr.push(bomb)
             i++;
         } 
     }
-    
+            
   }
-
-// variabili principali
-var numCelle = parseInt(prompt('Da quante celle vuoi sia formato il campo?'));
-var playGround = document.getElementById('playground');
-const numBombs = 16;
-var bombs = [];
 
 
 
 
 // PROGRAMMA
 
-setGrid(numCelle, playGround)
+// variabili principali
+var numCelle = parseInt(prompt('Da quante celle vuoi sia formato il campo?'));
+var numBombs = 16;
 
-playGround.addEventListener('click', 
-function(event) {
-    event.target.classList.toggle('click_bg_switch');
-    alert(event.target.innerHTML);
-}
-)
 
-setBombs(1, 100)
 
-console.log(bombs)
+const bombsArr = []        //ARRAY BOMBE
+const validTilesArr = []   //ARRAY CELLE DISPONIBILI
+var clickedTiles = []      //ARRAY CELLE CLICCATE        
+//
+
+setGrid(numCelle)     //CREO CAMPO
+setBombs(1,100)     //GENERO BOMBE
+
+
+console.log(validTilesArr)
+console.log(bombsArr)
+
+// EVENTO CLICK
+
+document.getElementById('playground').addEventListener('click',
+function(event){
+
+var clickOnTile = parseInt(event.target.innerHTML);
+
+if ( bombsArr.includes(clickOnTile) == true ) {
+    alert('BOOM! Game Over' + 'Score ' + clickedTiles.length)
+
+} else if ( clickedTiles.includes(clickOnTile) ) {
+    alert('seleziona una cella disponibile')
+
+}  else {
+    event.target.classList.add('click_bg_switch')
+    clickedTiles.push(clickOnTile)
+
+    if(clickedTiles.length == validTilesArr.length - numBombs){
+        alert('HAI VINTO!' + 'Score ' + clickedTiles.length)
+    }
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
